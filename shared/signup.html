@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup - ShopSprint</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: url('http://localhost/ShopSprint/shared/images/Shop.png') no-repeat center center fixed;
+
+
+      background-size: cover;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Overlay for slight blur or shading if needed */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      z-index: 0;
+    }
+
+    .form-wrapper {
+      display: flex;
+      align-items: flex-start; /* align to top */
+      justify-content: center;
+      min-height: 100vh;
+      padding-top: 250px; /* Push form down to reveal "ShopSprint" */
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.3); /* highly transparent */
+      backdrop-filter: blur(15px);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      width: 100%;
+      max-width: 460px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    h4 {
+      text-align: center;
+      font-weight: 600;
+      color: #2a003f;
+      margin-bottom: 1.5rem;
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    .form-control, .form-select {
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+
+    .form-control:focus, .form-select:focus {
+      box-shadow: 0 0 0 0.2rem rgba(74, 20, 140, 0.25);
+      border-color: #4a148c;
+    }
+
+    .btn-signup {
+      background: linear-gradient(to right, #4a148c, #6a1b9a);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn-signup:hover {
+      transform: scale(1.05);
+      background: linear-gradient(to right, #6a1b9a, #4a148c);
+    }
+
+    .text-link {
+      text-align: center;
+      margin-top: 1.2rem;
+      color: #4a148c;
+    }
+
+    .text-link a {
+      color: #4a148c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .text-link a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background overlay -->
+  <div class="overlay"></div>
+
+  <!-- Signup Form Card -->
+  <div class="form-wrapper">
+    <div class="form-container">
+      <form action="send_otp.php" method="post" onsubmit="return validate()">
+        <h4>Create Your Account</h4>
+
+        <div class="mb-3">
+          <input required class="form-control" type="text" placeholder="Username" name="username" />
+        </div>
+
+        <div class="mb-3">
+          <input required class="form-control" type="password" placeholder="Password" name="password" id="pass1" />
+        </div>
+
+        <div class="mb-3">
+          <input required class="form-control" type="password" placeholder="Confirm Password" id="pass2" />
+        </div>
+
+        <div class="mb-3">
+          <label for="usertype" class="form-label">Select User Type</label>
+          <select name="usertype" class="form-select" id="usertype">
+            <option>Vendor</option>
+            <option>Customer</option>
+            <option>Admin</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <input required class="form-control" type="email" placeholder="Email" name="email" />
+        </div>
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-signup">Sign Up</button>
+        </div>
+
+        <div class="text-link">
+          <small>Already have an account? <a href="login.html">Login here</a></small>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const pass1Obj = document.getElementById("pass1");
+    const pass2Obj = document.getElementById("pass2");
+
+    function validate() {
+      if (pass1Obj.value === pass2Obj.value) {
+        return true;
+      }
+      alert("Passwords do not match");
+      return false;
+    }
+  </script>
+</body>
+</html>
